@@ -21,7 +21,7 @@
 
 namespace TechDivision\Properties;
 
-use TechDivision\Lang\String
+use TechDivision\Lang\String;
 use TechDivision\Lang\NullpointerException;
 use TechDivision\Collections\HashMap;
 
