@@ -4,6 +4,7 @@
     "description": "Package that provides basic functionality to handle property files.",
     "homepage": "https://github.com/techdivision/TechDivision_Properties",
     "license": ["OSL-3.0"],
+    "minimum-stability": "dev",
     "repositories": [
         {
             "type": "vcs",

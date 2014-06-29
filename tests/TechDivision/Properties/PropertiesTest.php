@@ -1,44 +1,37 @@
 <?php
 
 /**
- * License: GNU General Public License
+ * \TechDivision\Properties\PropertiesTest
  *
- * Copyright (c) 2009 TechDivision GmbH.  All rights reserved.
- * Note: Original work copyright to respective authors
+ * NOTICE OF LICENSE
  *
- * This file is part of TechDivision GmbH - Connect.
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
  *
- * faett.net is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
+ * PHP version 5
  *
- * faett.net is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307,
- * USA.
- *
- * @package TechDivision_Properties
+ * @category  Library
+ * @package   TechDivision_Properties
+ * @author    Tim Wagner <tw@techdivision.com>
+ * @copyright 2014 TechDivision GmbH <info@techdivision.com>
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://github.com/techdivision/TechDivision_Properties
  */
 
-require_once "TechDivision/Properties/Properties.php";
+namespace TechDivision\Properties;
 
 /**
  * This is the test for the Properties class.
  *
- * @package TechDivision_Properties
- * @author Tim Wagner <t.wagner@techdivision.com>
- * @copyright TechDivision GmbH
- * @link http://www.techdivision.com
- * @license GPL
+ * @category  Library
+ * @package   TechDivision_Properties
+ * @author    Tim Wagner <tw@techdivision.com>
+ * @copyright 2014 TechDivision GmbH <info@techdivision.com>
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://github.com/techdivision/TechDivision_Properties
  */
-class TechDivision_Properties_PropertiesTest
-    extends PHPUnit_Framework_TestCase
+class PropertiesTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
@@ -46,15 +39,12 @@ class TechDivision_Properties_PropertiesTest
 	 * and expects an exception therefore.
 	 *
 	 * @return void
+	 * @expectedException TechDivision\Properties\PropertyFileNotFoundException
 	 */
 	public function testLoadWithPropertyFileNotFoundException()
 	{
-	    // set the expected exception
-	    $this->setExpectedException(
-	        'TechDivision_Properties_Exceptions_PropertyFileNotFoundException'
-	    );
 	    // initialize and load a not existent property file
-		$properties = TechDivision_Properties_Properties::create();
+		$properties = Properties::create();
 		$properties->load(
 			'Invalid/Path/To/File'
 		);
@@ -65,15 +55,12 @@ class TechDivision_Properties_PropertiesTest
 	 * and expects an exception therefore.
 	 *
 	 * @return void
+	 * @expectedException TechDivision\Properties\PropertyFileParseException
 	 */
 	public function testLoadWithPropertyFileParseException()
 	{
-	    // set the expected exception
-	    $this->setExpectedException(
-	        'TechDivision_Properties_Exceptions_PropertyFileParseException'
-	    );
 	    // initialize and load a not existent property file
-		$properties = TechDivision_Properties_Properties::create();
+		$properties = Properties::create();
 		$properties->load(
 			'TechDivision/Properties/invalid.properties'
 		);
@@ -88,7 +75,7 @@ class TechDivision_Properties_PropertiesTest
 	public function testLoadWithoutSections()
 	{
 	    // initialize and load a simple property file
-		$properties = TechDivision_Properties_Properties::create();
+		$properties = Properties::create();
 		$properties->load(
 			'TechDivision/Properties/test.no.sections.properties'
 		);
@@ -112,7 +99,7 @@ class TechDivision_Properties_PropertiesTest
 	public function testLoadWithSections()
 	{
 	    // initialize and load a sectioned property file
-		$properties = TechDivision_Properties_Properties::create();
+		$properties = Properties::create();
 		$properties->load(
 			'TechDivision/Properties/test.with.sections.properties',
 		    true
@@ -146,7 +133,7 @@ class TechDivision_Properties_PropertiesTest
 	public function testStoreWithoutSections()
 	{
 	    // create a new property file
-		$created = TechDivision_Properties_Properties::create();
+		$created = Properties::create();
         // set some properties
 		$created->setProperty('property.key.01', 'Foo test');
 		$created->setProperty('property.key.02', 'Bar test');
@@ -155,7 +142,7 @@ class TechDivision_Properties_PropertiesTest
 		    $toStore = 'TechDivision/Properties/stored.test.properties'
 		);
 	    // initialize and load the stored property file
-		$properties = TechDivision_Properties_Properties::create();
+		$properties = Properties::create();
 		$properties->load($toStore);
         // check the values
 		$this->assertEquals(
@@ -173,15 +160,12 @@ class TechDivision_Properties_PropertiesTest
 	 * invalid path and expects an exception therefore.
 	 *
 	 * @return void
+	 * @expectedException TechDivision\Properties\PropertyFileStoreException
 	 */
 	public function testStoreWithPropertyFileStoreException()
 	{
-	    // set the expected exception
-	    $this->setExpectedException(
-	    	'TechDivision_Properties_Exceptions_PropertyFileStoreException'
-	    );
 	    // create a new property file
-		$created = TechDivision_Properties_Properties::create();
+		$created = Properties::create();
         // set some properties
 		$created->setProperty('property.key.01', 'Foo test');
         // try store the property file
@@ -199,7 +183,7 @@ class TechDivision_Properties_PropertiesTest
 	public function testGetKeysWithoutSections()
 	{
 	    // initialize and load the stored property file
-		$properties = TechDivision_Properties_Properties::create();
+		$properties = Properties::create();
 		$properties->load(
 			'TechDivision/Properties/test.no.sections.properties'
 		);
@@ -219,7 +203,7 @@ class TechDivision_Properties_PropertiesTest
 	public function testGetKeysWithSections()
 	{
 	    // initialize and load the stored property file
-		$properties = TechDivision_Properties_Properties::create();
+		$properties = Properties::create();
 		$properties->load(
 			'TechDivision/Properties/test.with.sections.properties',
 		    true
