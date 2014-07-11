@@ -1,21 +1,20 @@
 {
     "name": "techdivision/properties",
-    "type": "package",
     "description": "Package that provides basic functionality to handle property files.",
     "homepage": "https://github.com/techdivision/TechDivision_Properties",
     "license": ["OSL-3.0"],
-    "minimum-stability": "dev",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/techdivision/TechDivision_Properties"
-        }
-    ],
     "require": {
-        "php" : ">=5.3.0",
-        "techdivision/collections" : "dev-master"
+        "php": ">=5.4.0",
+        "techdivision/collections" : "0.1.*"
     },
     "autoload": {
-        "psr-0": {"TechDivision": "src/"}
+        "psr-0": {
+            "TechDivision\\Properties": ["src/", "tests/"]
+        }
+    },
+    "config":{
+        "github-oauth":{
+            "github.com":"604a3b5943228e434a5b52c2ba3cf72286d30db9"
+        }
     }
 }
