@@ -4,3 +4,5 @@
 /.buildpath
 /.project
 /pear-src
+/.idea
+/composer.lock
