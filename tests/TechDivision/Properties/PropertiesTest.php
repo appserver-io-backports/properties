@@ -62,8 +62,8 @@ class PropertiesTest extends \PHPUnit_Framework_TestCase
 	    // initialize and load a not existent property file
 		$properties = Properties::create();
 		$properties->load(
-			'TechDivision/Properties/invalid.properties'
-		);
+		    __DIR__ . '/invalid.properties'
+        );
 	}
 
 	/**
@@ -77,7 +77,7 @@ class PropertiesTest extends \PHPUnit_Framework_TestCase
 	    // initialize and load a simple property file
 		$properties = Properties::create();
 		$properties->load(
-			'TechDivision/Properties/test.no.sections.properties'
+			__DIR__ . '/test.no.sections.properties'
 		);
         // check the values
 		$this->assertEquals(
@@ -101,7 +101,7 @@ class PropertiesTest extends \PHPUnit_Framework_TestCase
 	    // initialize and load a sectioned property file
 		$properties = Properties::create();
 		$properties->load(
-			'TechDivision/Properties/test.with.sections.properties',
+			__DIR__ . '/test.with.sections.properties',
 		    true
 		);
         // check the values
@@ -138,9 +138,7 @@ class PropertiesTest extends \PHPUnit_Framework_TestCase
 		$created->setProperty('property.key.01', 'Foo test');
 		$created->setProperty('property.key.02', 'Bar test');
         // store the property to a file
-		$created->store(
-		    $toStore = 'TechDivision/Properties/stored.test.properties'
-		);
+		$created->store($toStore = tempnam(sys_get_temp_dir(), 'stored.test.properties'));
 	    // initialize and load the stored property file
 		$properties = Properties::create();
 		$properties->load($toStore);
@@ -169,9 +167,7 @@ class PropertiesTest extends \PHPUnit_Framework_TestCase
         // set some properties
 		$created->setProperty('property.key.01', 'Foo test');
         // try store the property file
-		$created->store(
-		    $toStore = '/Invalid/Path/In/FileSystem'
-		);
+		$created->store('/Invalid/Path/In/FileSystem');
 	}
 
 	/**
@@ -185,7 +181,7 @@ class PropertiesTest extends \PHPUnit_Framework_TestCase
 	    // initialize and load the stored property file
 		$properties = Properties::create();
 		$properties->load(
-			'TechDivision/Properties/test.no.sections.properties'
+			__DIR__ . '/test.no.sections.properties'
 		);
         // load the keys
         $keys = $properties->getKeys();
@@ -205,7 +201,7 @@ class PropertiesTest extends \PHPUnit_Framework_TestCase
 	    // initialize and load the stored property file
 		$properties = Properties::create();
 		$properties->load(
-			'TechDivision/Properties/test.with.sections.properties',
+			__DIR__ . '/test.with.sections.properties',
 		    true
 		);
         // load the keys
