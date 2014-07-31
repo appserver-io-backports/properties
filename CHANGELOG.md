@@ -1,3 +1,13 @@
+# Version 0.1.2
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Add new PropertiesInterface
+
 # Version 0.1.1
 
 ## Bugfixes

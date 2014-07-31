@@ -22,7 +22,7 @@
 namespace TechDivision\Properties;
 
 use TechDivision\Lang\String;
-use TechDivision\Lang\NullpointerException;
+use TechDivision\Lang\NullPointerException;
 use TechDivision\Collections\HashMap;
 
 /**
@@ -48,7 +48,7 @@ use TechDivision\Collections\HashMap;
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * @link      https://github.com/techdivision/TechDivision_Properties
  */
-class Properties extends HashMap
+class Properties extends HashMap implements PropertiesInterface
 {
 
     /**
@@ -282,7 +282,7 @@ class Properties extends HashMap
             // initialize the array for the keys
             $keys = array();
             // iterate over the sections and merge all sectioned keys
-            foreach ($this->items as $key => $item) {
+            foreach ($this->items as $item) {
                 $keys = array_merge($keys, array_keys($item));
             }
             // return the keys
