@@ -1,3 +1,13 @@
+# Version 0.1.2
+
+## Bugfixes
+
+* Fix writing error in use statement for NullPointerException in Properties class
+
+## Features
+
+* Add new PropertiesInterface
+
 # Version 0.1.1
 
 ## Bugfixes
