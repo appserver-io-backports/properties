@@ -2,7 +2,7 @@
 
 ## Bugfixes
 
-* None
+* Fix writing error in use statement for NullPointerException in Properties class
 
 ## Features
 
